@@ -1,0 +1,67 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content%}
+
+    <h1 align="center">Welcome Admin</h1><hr>
+    <h1 align="center">Available centers for vacinations</h1>
+    <div class="content">
+      {% for center in centers %}
+        <div class="center">
+          <p><b>{{ center.id }} 
+            Center name: {{ center.data }} 
+            Working Hours: {{ center.wh }} 
+            Date: {{ center.date }} 
+            Booked Dose {{ center.dose }}</b>
+            <button type="button" class="close" onClick="deleteCenter({{center.id}})">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </p>
+        </div>
+      {% endfor %}
+    </div>
+   <hr>
+   <h1 align="center">Details of vacinations booked</h1>
+   <div class="content">
+    {% for person in persons %}
+      <div class="center">
+        <p><b>{{ person.id }} Applicant name: {{ person.name }} center name: {{ person.cname }} Date: {{ person.date }}</b>
+        </p>
+      </div>
+    {% endfor %}
+  </div>
+   <h4 align="center">Fill the details to add new Center</h4>
+    <form method="POST">
+        <br>
+      <div class="form-group">
+        <label for="text">Center Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="cname"
+          name="cname"
+          placeholder="Enter New Center name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="text">Working Hours</label>
+        <input
+          type="text"
+          class="form-control"
+          id="wh"
+          name="wh"
+          placeholder="Enter the working Hours of the center"
+        />
+      </div>
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input
+          type="date"
+          class="form-control"
+          id="date"
+          name="date"
+        />
+      </div>
+      <br />
+      <div align="center">
+        <button type="submit" class="btn btn-primary">Add Center</button>
+      </div>
+    </form></div>
+    {% endblock %}
